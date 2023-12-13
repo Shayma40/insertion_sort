@@ -1,0 +1,46 @@
+ALGORITHM INSERTION_SORT(binary search)
+VAR
+    arr: ARRAY of INTEGER;  // Input array to be sorted
+    n, i, key, insertionIndex, low, high, mid: INTEGER;
+
+BEGIN
+    // Input the array size
+    READ n;
+
+    // Input the array elements
+    FOR i FROM 0 TO n-1 DO
+        READ arr[i];
+    END_FOR
+
+    // Perform Insertion Sort using Binary Search
+    FOR i FROM 1 TO n-1 DO
+        key := arr[i];
+        low := 0;
+        high := i - 1;
+
+        // Use binary search to find the insertion position
+        WHILE low <= high DO
+            mid := (low + high) / 2;
+            IF arr[mid] > key THEN
+                high := mid - 1;
+            ELSE
+                low := mid + 1;
+            END_IF
+        END_WHILE
+
+        insertionIndex := low;
+
+        // Shift elements to make space for the key
+        FOR j FROM i DOWNTO INSERTIONIndex + 1 DO
+            arr[j] := arr[j - 1];
+        END_FOR
+
+        arr[INSERTIONIndex] := key;  // Insert the key into the correct position
+    END_FOR
+
+    // Output the sorted array
+    FOR i FROM 0 TO n-1 DO
+        WRITE arr[i];
+        WRITE " ";  // Separate the numbers for better readability
+    END_FOR
+END

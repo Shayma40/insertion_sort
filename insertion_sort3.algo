@@ -1,0 +1,43 @@
+PROCEDURE InsertionSort(arr: ARRAY of INTEGER)
+VAR
+    n, i, key, j: INTEGER;
+
+BEGIN
+    // Determine the array size
+    n := LENGTH(arr);
+
+    // Perform Insertion Sort
+    FOR i FROM 1 TO n-1 DO
+        key := arr[i];
+        j := i - 1;
+
+        // Move elements greater than key to one position ahead of their current position
+        WHILE (j >= 0) AND (arr[j] > key) DO
+            arr[j + 1] := arr[j];
+            j := j - 1;
+        END_WHILE
+
+        arr[j + 1] := key;  // Insert the key into the sorted sequence
+    END_FOR
+END PROCEDURE
+
+ALGORITHM Main
+VAR
+    arr: ARRAY of INTEGER;  // Input array to be sorted
+    i: INTEGER;
+
+BEGIN
+    // Input the array elements
+    FOR i FROM 0 TO LENGTH(arr)-1 DO
+        READ arr[i];
+    END_FOR
+
+    // Call the InsertionSort procedure
+    CALL InsertionSort(arr);
+
+    // Output the sorted array
+    FOR i FROM 0 TO LENGTH(arr)-1 DO
+        WRITE arr[i];
+        WRITE " ";  // Separate the numbers for better readability
+    END_FOR
+END ALGORITHM
